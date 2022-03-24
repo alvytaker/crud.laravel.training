@@ -20,7 +20,7 @@
   
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Nombre</label>
-                    <input type="text" name="name" class="form-control" value="{{ $user->name }}" required="true">
+                    <input type="text" name="name" class="form-control" value="{{ $user->name_user }}" required="true">
                   </div>
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Email</label>

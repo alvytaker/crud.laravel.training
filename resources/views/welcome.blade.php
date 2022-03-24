@@ -72,9 +72,7 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        
                     @endauth
                 </div>
             @endif
@@ -89,7 +87,7 @@
                 <div class="links">
                     <a href="https://laravel.com/docs/6.x">Documentación Laravel</a>
                     <a href="{{route('uikits1')}}">UI KIT Bootstrap AdminLTE 3</a>
-                    <a href="{{route('index')}}">Ejemplos Frontend y Backend</a>
+                    <a href="{{route('login')}}">Ejemplos Frontend y Backend</a>
                 </div>
             </div>
         </div>

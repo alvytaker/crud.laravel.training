@@ -39,9 +39,13 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Rut</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Profesion</th>
+                                <th>Comuna</th>
+                                <th>Region</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -49,9 +53,13 @@
                           @foreach($users as $posicion => $user)
                           <tr>
                             <th scope="row">{{$user->id}}</th>
-                            <td>{{$user->name}}</td>
+                            <td>{{$user->rut}}</td>
+                            <td>{{$user->name_user}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->title}}</td>
+                            <td>{{$user->name_comuna}}</td>
+                            <td>{{$user->name_region}}</td>
+
                              <td style="text-align: center;">  
                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUser{{ $user->id }}">
                                 <i class="zmdi zmdi-refresh-sync zmdi-hc-lg" title="Actualizar Registro"></i>  

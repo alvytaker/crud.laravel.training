@@ -229,10 +229,10 @@
                     
 
                       <li class="nav-item">
-                        <a href="{{ route('welcome') }}" class="nav-link">
+                        <a href="{{ route('cierre') }}" class="nav-link">
                           <i class="nav-icon fas fa-arrow-left"></i>
                           <p>
-                            Ménu principal
+                            Cerrar sesion
                           </p>
                         </a>
                       </li>
@@ -282,17 +282,32 @@
 <script src="plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+{{--<script src="dist/js/adminlte.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
 
+<!-- jquery cdn-->
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  
 <script type="text/javascript">
   setTimeout(function () {
          $("#msj").fadeOut(1000);
      }, 5000); </script>
+<script>
+  $("#btnedelo").click(function(){
+     // comunasedit();
+     alert("hola");
+     });
+</script>
 @yield('js')
 
 </body>

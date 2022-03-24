@@ -35,8 +35,13 @@ class Comuna extends Model
 		'region_id'
 	];
 
-	public function regione()
+	public function region()
 	{
 		return $this->belongsTo(Region::class, 'region_id');
+	}
+
+	public function user()
+	{
+		return $this->hasMany(User::class, 'comuna_id');
 	}
 }

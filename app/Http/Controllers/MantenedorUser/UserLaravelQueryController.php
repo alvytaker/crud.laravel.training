@@ -18,7 +18,7 @@ class UserLaravelQueryController extends Controller
 
     public function index(){
 
-        $users = DB::table('user')->select('user.id','user.name AS name_user','email','title','profession_id','comunas.name AS name_comuna','regiones.name AS name_region')
+        $users = DB::table('user')->select('user.id','user.name AS name_user','rut','email','title','profession_id','comunas.name AS name_comuna','regiones.name AS name_region')
         ->join('comunas','user.comuna_id','=','comunas.id')
         ->join('regiones','comunas.region_id','=','regiones.id')
         ->join('profession','user.profession_id','=','profession.id')->get();
@@ -171,36 +171,10 @@ class UserLaravelQueryController extends Controller
 
   public function emailusers(){
 
-     $user = DB::table('user')->select('user.id AS id_usuario','name AS nombre_usuario','email AS email_usuario','title AS nombre_profesion')->join('profession','user.profession_id','=','profession.id')->get();
-     $excel = new UserExport($user);
+    $correo = new UserExcel(); 
     
-     $store =  Excel::store($excel, 'Lista-Usuario/Lista-Usuarios.xlsx');
-  
-     //Llamamos al metodo zip
-     $zip = new ZipArchive;
-     //Creamos un nombre al archivo zip
-     $fileName = "Lista-Usuario.zip";
-     //Creamos archivo zip
-     if($zip->open(storage_path('app/'.$fileName),ZipArchive::CREATE)==TRUE){
-     //Buscamos la carpeta a comprimir
-     $files = File::files(storage_path('app/Lista-Usuario'));
-     $zip->addFromString('Lista-Usuarios.xlsx', 'file content goes here');
-     $zip->setEncryptionName('Lista-Usuarios.xlsx', ZipArchive::EM_AES_256, '1234');
-     //Recorremos la carpeta para agregar los archivos que estan dentro de esta
-     foreach($files as $key=> $value){
-     $relativeName = basename($value);
- 
-     $zip->addFile($value, $relativeName);
-     }
+    $user = DB::table('user')->select('user.id AS id_usuario','name AS nombre_usuario','email AS email_usuario','title AS nombre_profesion')->join('profession','user.profession_id','=','profession.id')->get();
 
-     $zip->close();
-
-     }
-
-    $linkexcel = response((storage_path('app/'.$fileName)));
-
-    $correo = new UserExcel($linkexcel); 
-    
     foreach($user as $us){
         $email = $us->email_usuario;  
 
@@ -214,7 +188,7 @@ class UserLaravelQueryController extends Controller
 
   function cargarcomunas(Request $request){
 
-    $comunas = DB::table('comunas')->where('region_id','=',$request->regionadd)->get();
+    $comunas = DB::table('comunas')->where('region_id','=',$request->region_id)->get();
  
     return response(json_encode($comunas),200)->header('Content-type','text/plain');
   }
@@ -224,6 +198,21 @@ class UserLaravelQueryController extends Controller
     $comunas = DB::table('comunas')->where('region_id','=',$request->regionedit)->get();
  
     return response(json_encode($comunas),200)->header('Content-type','text/plain');
+  }
+
+  function viewuseredit($user_id){
+
+    $users = DB::table('user')->select('user.id','user.name AS name_user','rut','email','title','profession_id','comunas.name AS name_comuna','regiones.name AS name_region')
+        ->join('comunas','user.comuna_id','=','comunas.id')
+        ->join('regiones','comunas.region_id','=','regiones.id')
+        ->join('profession','user.profession_id','=','profession.id')
+        ->where('user.id','=',$user_id)->get();
+
+    $profession = DB::table('profession')->get();
+    $regiones = DB::table('regiones')->get();
+    $comunas = DB::table('comunas')->get();
+
+    return view('usuarios/ModalConstructorLaravel/EditUser', compact('users','profession', 'regiones','comunas'));
   }
 
 }

@@ -20,17 +20,20 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'rut',
 		'name',
 		'email',
 		'email_verified_at',
 		'password',
 		'remember_token',
-		'profession_id'
+		'profession_id',
+        'comuna_id'
 	];
 	
 	protected $casts =[
         'is_admin' => 'boolean',
-		'profession_id' => 'int'
+		'profession_id' => 'int',
+        
      ];
 
     /**
@@ -42,6 +45,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
 
 
  //Metodo ejemplo creado
@@ -56,7 +60,11 @@ public static function findByEmail($email){
 }
 //Conectar tablas
 public function profession(){
-
-return $this->belongsTo(Profession::class);
+return $this->belongsTo(Profession::class, 'profession_id');
 }
+
+//Conectar tablas
+public function comuna(){
+    return $this->belongsTo(Comuna::class,'comuna_id');
+    }
 }

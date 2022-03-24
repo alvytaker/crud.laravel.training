@@ -30,7 +30,7 @@ class Region extends Model
 		'name'
 	];
 
-	public function comunas()
+	public function comuna()
 	{
 		return $this->hasMany(Comuna::class, 'region_id');
 	}

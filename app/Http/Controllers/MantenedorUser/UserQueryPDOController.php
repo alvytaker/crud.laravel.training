@@ -11,7 +11,11 @@ class UserQueryPDOController extends Controller
 
     public function index(){
 
-        $users = DB::select('SELECT user.id , name , email , title, profession_id FROM user INNER JOIN profession ON user.profession_id=profession.id');
+        $users = DB::select('SELECT user.id ,rut , user.name AS name_user, email , title, profession_id, comunas.name AS name_comuna, regiones.name AS name_region FROM user 
+        INNER JOIN profession ON user.profession_id=profession.id 
+        INNER JOIN comunas ON user.comuna_id = comunas.id
+        INNER JOIN regiones ON comunas.region_id = regiones.id');
+
         $total = DB::table('user')->get();
         $profession = DB::table('profession')->get();
 

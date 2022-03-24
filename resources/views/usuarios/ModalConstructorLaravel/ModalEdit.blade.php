@@ -1,6 +1,6 @@
 <!--ventana para Update--->
 <div class="modal fade" id="editUser{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #563d7c !important;">
           <h6 class="modal-title" style="color: #fff; text-align: center;">
@@ -12,60 +12,38 @@
         </div>
   
   
-        <form method="POST" action="{{ route('user.EditLaravelQuery', $user->id) }}" class="nav-link {{ Request::is('user*') ? 'active' : '' }}">
-        @method('PUT')
-        @csrf
-  
-              <div class="modal-body" id="cont_modal">
-  
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Nombre</label>
-                    <input type="text" name="name" class="form-control" value="{{ $user->name_user}}" required="true">
-                  </div>
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Email</label>
-                    <input type="text" name="email" class="form-control" value="{{ $user->email }}" required="true">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Profesion</label>
-                    <select for="recipient-name" name="profession_id" class="form-control">
-                    @foreach($profession as $profe)
-                    <option type="text" value="{{ $profe->id}}" {{ $profe->title == $user->title ? 'selected' : ''}}>{{ $profe->title}}</option>
-                    @endforeach()
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Region</label>
-                    <select id="regionedit" for="recipient-name" name="regionedit" class="form-control">
-                    @foreach($regiones as $reg)
-                    <option type="text" value="{{ $reg->id}}" {{ $reg->name == $user->name_region ? 'selected' : ''}}>{{ $reg->name}}</option>
-                    @endforeach()
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Comuna</label>
-                    <select id="comunaedit" for="recipient-name" name="comunaedit" class="form-control">
-                 {{-- @foreach($comunas as $com) --}}   
-                    <option type="text">{{ $user->name_comuna}}</option>
-                    {{--  @endforeach() --}}
-                    </select>
-                  </div>
-            
-               
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-              </div>
-         </form>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
   
       </div>
     </div>
   </div>
-
-
-
   <!---fin ventana Update --->

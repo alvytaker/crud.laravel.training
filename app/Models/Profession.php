@@ -13,7 +13,7 @@ class Profession extends Model
     public $timestamps = false;
 
     //Conectar tablas
-    public function users(){
-        return $this->hasMany(User::class);
+    public function user(){
+        return $this->hasMany(User::class,'profession_id');
     }
 }

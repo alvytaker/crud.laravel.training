@@ -15,7 +15,7 @@
 
         <div class="modal-body mt-5 text-center">
             <div class="form-group">
-                <input type="text" name="name" class="form-control" value="{{ $user->name }}" required="true">
+                <input type="text" name="name" class="form-control" value="{{ $user->name_user }}" required="true">
               </div>
 
           <strong style="text-align: center !important"> 

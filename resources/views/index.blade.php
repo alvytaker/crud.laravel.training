@@ -200,3 +200,30 @@
     
   </section>
 @stop
+
+{{-- <script>
+
+    //Este metodo es para cargar un listado de datos a traves de filtros 
+
+    //capturamos evento del select 
+    $("#desde").change(irlic);
+		$("#hasta").change(irlic);
+		$("#area").change(irlic);
+		$("#costo").change(irlic);
+		$("#search").change(irlic);
+		$("#estado").change(irlic);
+
+		function irlic(){
+
+			var area 	= $("#area").val();
+			var desde 	= $("#desde").val();
+			var hasta 	= $("#hasta").val();
+			var estado 	= $("#estado").val();
+			var data 	= $("#search").val();
+			var costo 	= $("#costo").val();
+ //enviamos parametros a la funcion que se encarga de cargar la vista "licencias"
+			var url= "{{ route('Licencias') }}?desde="+desde+"&hasta="+hasta+"&area="+area+"&estado="+estado+"&data="+data+"&costo="+costo;
+	 recargamos la pagina siempre y cuando se haya seleccionado un filtro 		
+        window.location = (url); 
+		} 
+</script> --}}

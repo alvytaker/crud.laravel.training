@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
         //Creacion de usuario mediante eloquent
         User::create([
             'name' => 'Duilio Palacios',
+            'rut' => '12345678',
             'email' => 'duilio@styde.net',
             'password' => bcrypt('laravel'),
             'profession_id' => 1,
@@ -32,6 +33,7 @@ class UserSeeder extends Seeder
         //Creacion de usuario mediante constructor sql laravel
         DB::table('user')->insert([
             'name' => 'Esteban Mendez',
+            'rut' => '12453876',
             'email' => 'Esteban@styde.net',
             'password' => bcrypt('laravel'),
             'profession_id' => 1,
@@ -42,9 +44,9 @@ class UserSeeder extends Seeder
 
         //Creacion de usuario mediante QUERYPDO
         DB::insert("INSERT INTO user 
-        (name, email, password, profession_id, is_admin,comuna_id) 
-         VALUES (?, ?, ?, ?, ?, ?)",
-         ['Camilo Perez','Camilo@styde.net',bcrypt('laravel'), 3, true, 8]);
+        (name, rut, email, password, profession_id, is_admin,comuna_id) 
+         VALUES (?, ?, ?, ?, ?, ?, ?)",
+         ['Camilo Perez','20345876','Camilo@styde.net',bcrypt('laravel'), 3, true, 8]);
 
          
         

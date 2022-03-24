@@ -42,11 +42,13 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Rut</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Profesion</th>
-                                <th>Region</th>
                                 <th>Comuna</th>
+                                <th>Region</th>
+                            
                             </tr>
                         </thead>
                         <tbody>
@@ -54,15 +56,25 @@
                           @foreach($users as $posicion => $user)
                           <tr>
                             <th scope="row">{{$user->id}}</th>
+                            <td>{{$user->rut}}</td>
                             <td>{{$user->name_user}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->title}}</td>
-                            <td>{{$user->name_region}}</td>
                             <td>{{$user->name_comuna}}</td>
+                            <td>{{$user->name_region}}</td>
+                            
                              <td style="text-align: center;">  
+                    
                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUser{{ $user->id }}">
                                 <i class="zmdi zmdi-refresh-sync zmdi-hc-lg" title="Actualizar Registro"></i>  
                               </button>
+
+                               
+                              <a class="btn btn-warning" href="{{ route('viewuseredit', $user->id) }}">
+                                <i class="zmdi zmdi-refresh-sync zmdi-hc-lg" title="Actualizar Registro"></i>  
+                              </a>
+                               
+                             
 
                               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUser{{ $user->id }}">
                                 <i class="zmdi zmdi-delete zmdi-hc-lg" title="Eliminar Registro"></i>  
@@ -75,7 +87,7 @@
                            
                         </tr>
 
-                        @include('usuarios/ModalConstructorLaravel/ModalEdit')
+                        
 
                         @include('usuarios/ModalConstructorLaravel/ModalDelete')
                       
@@ -86,6 +98,7 @@
                        
                     </table>
                   </div>
+                  @include('usuarios/ModalConstructorLaravel/ModalEdit')
                 </div>
             </div>
         </div>
@@ -93,42 +106,36 @@
     </div>
   </section>
 @endsection
-
+ 
 @section('js')
-
-<script>
-
-  $("#regionadd").change(function(){
+  <script>
+    $("#regionadd").change(function(){
       comunas();
-    });
+      });
 
-  function comunas(){
-    document.getElementById("comunaadd").innerHTML = null;
-    $.ajax({
-              url:  '{{route('cargarcomunas')}}',
-              method: 'GET' ,
-              data:$("#regionadd").serialize()
-
-              }).done(function(com){
-               arreglo = JSON.parse(com);
-               for (var i=0; i<arreglo.length; i++) { 
-             todo = '<option value="'+arreglo[i].id+'">'+arreglo[i].name+'</option>';
-
-             $('#comunaadd').append(todo);
-               }
-              });
-    }
-
-
-</script>
-
-<script>
-$("#regionedit").change(function(){
-     
-      comunasedit();
-    });
-
-    function comunasedit(){
+   /*   $("#regionedit").change(function(){
+     // comunasedit();
+     alert("hola");
+     }); */
+  
+    function comunas(){
+      document.getElementById("comunaadd").innerHTML = null;
+      $.ajax({
+                url:  '{{route('cargarcomunas')}}',
+                method: 'GET' ,
+                data:$("#regionadd").serialize()
+  
+                }).done(function(com){
+                 arreglo = JSON.parse(com);
+                 for (var i=0; i<arreglo.length; i++) { 
+               todo = '<option value="'+arreglo[i].id+'">'+arreglo[i].name+'</option>';
+  
+               $('#comunaadd').append(todo);
+                 }
+                });
+      }
+  
+  function comunasedit(){
     document.getElementById("comunaedit").innerHTML = null;
     $.ajax({
               url:  '{{route('cargarcomunasedit')}}',
@@ -144,7 +151,7 @@ $("#regionedit").change(function(){
                }
               });
     }
+
 </script>
 
-@stop
-
+  @endsection()

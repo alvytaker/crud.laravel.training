@@ -39,9 +39,13 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Rut</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Profesion</th>
+                                <th>Comuna</th>
+                                <th>Region</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -49,13 +53,19 @@
                           @foreach($users as $posicion => $user)
                           <tr>
                             <th scope="row">{{$user->id}}</th>
+                            <td>{{$user->rut}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->profession->title}}</td>
+                            <td>{{$user->comuna->name}}</td>
+                            <td>{{$user->comuna->region->name}}</td>
                              <td style="text-align: center;">  
-                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUser{{ $user->id }}">
+                              <button id="btned"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUser{{ $user->id }}">
                                 <i class="zmdi zmdi-refresh-sync zmdi-hc-lg" title="Actualizar Registro"></i>  
                               </button>
+                              <a class="btn btn-warning" id="btnedelo">
+                                <i class="zmdi zmdi-refresh-sync zmdi-hc-lg" title="Actualizar Registro"></i>  
+                              </a>
 
                               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUser{{ $user->id }}">
                                 <i class="zmdi zmdi-delete zmdi-hc-lg" title="Eliminar Registro"></i>  
